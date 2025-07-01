@@ -100,12 +100,6 @@ async function resolvePythonModulePath(parsedText: string): Promise<vscode.Uri |
 
 
 export function activate(context: vscode.ExtensionContext) {
-	const disposable = vscode.commands.registerCommand('hydra-file-navigator.helloWorld', () => {
-		vscode.window.showInformationMessage('Hello World from hydra-file-navigator!');
-	});
-
-	context.subscriptions.push(disposable);
-
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '';
     dotenv.config({ path: path.join(workspaceRoot, '.env') });
 
