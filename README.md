@@ -1,4 +1,6 @@
-# hydra-file-navigator README
+# hydra-file-navigator
+
+# - Heavily WIP! -
 
 Simple extension to allow clicking on file paths in YAML files of hydra defaults
 define via:
