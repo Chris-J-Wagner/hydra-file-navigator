@@ -1,6 +1,7 @@
 {
   "name": "hydra-file-navigator",
   "displayName": "hydra-file-navigator",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Chris-J-Wagner/hydra-file-navigator"
