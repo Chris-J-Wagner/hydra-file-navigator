@@ -1,7 +1,11 @@
 {
   "name": "hydra-file-navigator",
   "displayName": "hydra-file-navigator",
-  "description": "TODO",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chris-J-Wagner/hydra-file-navigator"
+    },
+  "description": "A lightweight VSCode extension to navigate yaml and python files in hydra configurations.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.54.0"
