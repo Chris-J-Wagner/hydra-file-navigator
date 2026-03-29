@@ -22,7 +22,3 @@ Create a .env file (if not already present) in the root of your workspace with t
 HYDRA_CONF_DIR=<path_to_your_hydra_conf_directory>
 ```
 Note: for the env variable to take effect, you need to restart VSCode after creating or modifying the .env file.
-
- # TODO:
- - test the used regEx against possible syntax
- - Test python path resolution with .env
