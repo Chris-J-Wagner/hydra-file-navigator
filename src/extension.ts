@@ -13,7 +13,7 @@ async function resolveDefaultPath(parsedText: string): Promise<vscode.Uri | unde
     }
 
     const folderName = yamlMatch[1];
-    const filePath = yamlMatch[2] + ".yaml";
+    const filePath = yamlMatch[2].replace(/#.*$/, '').trim() + ".yaml";
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '';
     const defaultRoot = path.join(workspaceRoot,'conf');
     const basePaths = [defaultRoot];
