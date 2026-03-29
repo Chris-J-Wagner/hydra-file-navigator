@@ -1,7 +1,5 @@
 # hydra-file-navigator
 
-# - Heavily WIP! -
-
 Simple extension to allow clicking on file paths in YAML files of hydra defaults
 define via:
 ```
@@ -28,6 +26,3 @@ Note: for the env variable to take effect, you need to restart VSCode after crea
  # TODO:
  - test the used regEx against possible syntax
  - Test python path resolution with .env
- - Package everything and install locally to test
- - Ignore comments in yaml file line
- - Reload package on env var change
