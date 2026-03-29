@@ -68,8 +68,7 @@ async function resolvePythonModulePath(parsedText: string): Promise<vscode.Uri |
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '';
     const basePaths = [workspaceRoot];
 
-    dotenv.config({ path: path.join(workspaceRoot, '.env') });
-    const envPythonPath = process.env['PYTHONPATH']; 
+    const envPythonPath = process.env['PYTHONPATH'];
     if (envPythonPath) 
     {
         const resolvedPythonPath = path.isAbsolute(envPythonPath) ? envPythonPath : path.join(workspaceRoot, envPythonPath);
@@ -103,7 +102,17 @@ async function resolvePythonModulePath(parsedText: string): Promise<vscode.Uri |
 
 export function activate(context: vscode.ExtensionContext) {
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '';
-    dotenv.config({ path: path.join(workspaceRoot, '.env') });
+    const envPath = path.join(workspaceRoot, '.env');
+
+    dotenv.config({ path: envPath, override: true });
+
+    const envWatcher = vscode.workspace.createFileSystemWatcher(
+        new vscode.RelativePattern(workspaceRoot, '.env')
+    );
+    const reloadEnv = () => dotenv.config({ path: envPath, override: true });
+    envWatcher.onDidChange(reloadEnv);
+    envWatcher.onDidCreate(reloadEnv);
+    context.subscriptions.push(envWatcher);
 
     vscode.languages.registerDefinitionProvider('yaml',
         {
