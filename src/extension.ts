@@ -18,16 +18,18 @@ async function resolveDefaultPath(parsedText: string): Promise<vscode.Uri | unde
     const defaultRoot = path.join(workspaceRoot,'conf');
     const basePaths = [defaultRoot];
 
-    // Check if the HYDRA_CONFIG_PATH environment variable is set
-    const envConfPath = process.env['HYDRA_CONFIG_PATH'];
+    // Check if the HYDRA_CONF_DIR environment variable is set
+    const envConfPath = process.env['HYDRA_CONF_DIR'];
     if (envConfPath) 
     {
-        basePaths.push(envConfPath);
+        const resolvedConfPath = path.isAbsolute(envConfPath) ? envConfPath : path.join(workspaceRoot, envConfPath);
+        basePaths.push(resolvedConfPath);
     }
 
     for(const basePath of basePaths)
     {
         const fullFilePath = path.join(basePath,folderName,filePath);
+        console.log("Full file path:", fullFilePath);
         const uri = vscode.Uri.file(fullFilePath);
         let exists = false;
         try 
